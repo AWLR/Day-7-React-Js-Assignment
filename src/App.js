@@ -8,11 +8,14 @@ function App() {
 
   function changehandle(e) {
     SetInputData({ ...inputdata, [e.target.name]: e.target.value })
+   
   }
 
   let { name, email } = inputdata;
 
-  function changhandle() {
+  function formSubmit(e) {
+    e.preventDefault();
+    
     // Email Validation
     if (!isValidEmail(inputdata.email)) {
       alert('Please enter a valid email address.');
@@ -31,9 +34,12 @@ function App() {
   };
   return (
     <div className="App">
+      <form onSubmit={formSubmit}>
+
       <input type="text" placeholder='Enter your name' name="name" autoComplete='off' value={inputdata.name} onChange={changehandle} /><br></br>
       <input type="email" placeholder='Enter your email' name="email" autoComplete='off' value={inputdata.email} onChange={changehandle} /><br></br>
-      <button onClick={changhandle}>Add It</button>
+      <button onClick={formSubmit}>Add It</button>
+      </form>
 
       <table border={1} width="30%" cellPadding={10} >
         <tbody>
